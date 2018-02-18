@@ -10,7 +10,6 @@ The project is named base12 but actually it's a base16 encoding with the followi
 | 自由/2 | 平等/6 | 公正/A | 法治/E |
 | 爱国/3 | 敬业/7 | 诚信/B | 友善/F |
 
-A tcp tunnel is also provided for convenience. 
 
 ## Install
 
@@ -40,4 +39,20 @@ $ base12
 $ base12 -d
 > 主义核心平等民主平等价值平等价值平等友善自由社会敬业敬业平等友善敬业自由平等价值平等主义自由法治社会公正
 Hello world.
+```
+
+## b12tunnel
+A tcp tunnel is provided named `b12tunnel`. 
+An example for a client and a server to communicate is shown below. 
+```bash
+# b12tunnel -h for help
+$ nc -l -p 1234  # a nc server
+# setup a b12tunnel to send decoded data to nc server
+# b12tunnel -r remote_server -p remote_port -l local_port -t tunnel_type 
+$ b12tunnel -r localhost -p 1234 -l 1236 -t decode 
+# Then setup another b12tunnel connected to the decoding server
+# b12tunnel -r remote_server -p remote_port -l local_port -t tunnel_type 
+$ b12tunnel -r localhost -p 1236 -l 1237 -t encode 
+# Then start a nc client as usual but with the port of the tunnel
+$ nc localhost 1237
 ```

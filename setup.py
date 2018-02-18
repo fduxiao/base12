@@ -155,6 +155,7 @@ setup(
     entry_points={  # Optional
         'console_scripts': [
             'base12=base12.main:main',
+            'b12tunnel=base12.b12tunnel:main',
         ],
     },
 )
